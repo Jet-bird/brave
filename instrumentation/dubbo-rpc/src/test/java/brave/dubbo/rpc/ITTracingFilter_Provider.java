@@ -1,10 +1,10 @@
 package brave.dubbo.rpc;
 
 import brave.sampler.Sampler;
-import com.alibaba.dubbo.common.beanutil.JavaBeanDescriptor;
-import com.alibaba.dubbo.config.ApplicationConfig;
-import com.alibaba.dubbo.config.ReferenceConfig;
-import com.alibaba.dubbo.rpc.RpcContext;
+import org.apache.dubbo.common.beanutil.JavaBeanDescriptor;
+import org.apache.dubbo.config.ApplicationConfig;
+import org.apache.dubbo.config.ReferenceConfig;
+import org.apache.dubbo.rpc.RpcContext;
 import org.junit.Before;
 import org.junit.Test;
 import zipkin2.Span;
@@ -32,7 +32,7 @@ public class ITTracingFilter_Provider extends ITTracingFilter {
     server.start();
 
     ReferenceConfig<GreeterService> ref = new ReferenceConfig<>();
-    ref.setApplication(new ApplicationConfig("bean-consumer"));
+      ref.setApplication(new ApplicationConfig("bean-provider"));
     ref.setInterface(GreeterService.class);
     ref.setUrl("dubbo://" + server.ip() + ":" + server.port() + "?scope=remote&generic=bean");
     client = ref;
